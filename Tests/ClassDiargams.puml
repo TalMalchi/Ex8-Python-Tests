@@ -1,0 +1,184 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+@startuml
+'https://plantuml.com/sequence-diagram
+
+class Agent{
+
++self.pokList : list
++self.parseAgent : Agent
++ self.id : int
++ self.value : int
++ self.src : int
++ self.dst : int
++ self.speed : float
++ self.pos: Point
++ self.prevNodeTime: int
++ self.path: list
++ self.passedPokPos : Point
+
++def parseAgent(self, jsonStr): Agent
++def get_previous_node_time(self): int
++def set_previous_node_time(self, previous_node_time)
++def setPassedPokPos(self, passedPokPos: Point)
++def  def getPassedPokPos(self) : Point
++def def getId(self): int
++def def getValue(self): int
++def def setValue(self, val):
++def def get_speed(self): int
++def def set_speed(self, sp)
++def def getPos(self): Point
++def def setPos(self, pos):
++ def getSrc(self): int
++def toJSON(self): string
++def setSrc(self, src): int
++def getDest(self): int
++def setDest(self, dest):
++def addToPath(self, lst: list, graph: nx.DiGraph, timeStamps: list): list
++def getPathHead(self): int
++def removePathHead(self):
++def getPath(self): list
++def setPath(self, path: list, graph: nx.DiGraph, timeStamps: list)
++def getPokLst(self): list
++def getPokLstHead(self) : Pokemon
++def setPokLst(self, PokemonsListPerAgent):
++def addPokemonsListPerAgent(self, pok):
++def addTimeStamps(self, graph: nx.DiGraph, timeStamps: list):
++def quadratic(self, a, b, c): float
++def distanceFromSrcNode(self, graph: nx.DiGraph): float
++def find_curr_pos_of_agent(self, graph: nx.DiGraph) : Point
+
+
+
+
+
+}
+class Algorithms{
+
++def assignAgentSrcNodes(numOfAgents: int, client: Client, pokLst: list, graph: nx.DiGraph) :int
++def tsp(graph: nx.DiGraph, nodesToVisit: list): list, float
++def def assignNewPokemonToAgent(graph: nx.DiGraph, agentLst: list, pokemon: Pokemon, timeStamps: list): list, list
+
+}
+
+class client{
+
++def start_connection(self, ip, port):
++def __send_message(self, msg):
++def get_agents(self):
++def add_agent(self, json_of_node):
++def get_graph(self):
++def get_info(self):
++def is_running(self):
++def time_to_end(self):
++def start(self):
++def stop(self):
++def move(self):
++def choose_next_edge(self, next_agent_node_json):
++def log_in(self, id_str):
++def stop_connection(self):
+
+}
+
+class DataInput{
++def loadGraph(stringGraph): graph
++def loadAllPokemons(pokemons, graph: nx.DiGraph): list
++def loadAllAgents(agents): list
+
+}
+class Pokemon{
+
++self.value :int
++self.type : int
++self.pos : Point
++self.node_src : int
++self.node_dest : int
++self.findSrcDest(graph)
+
+
++def def findSrcDest(self, graph: nx.DiGraph):
++def getValue(self): int
++def setValue(self):
++def getType(self): int
++def setType(self, type):
++def getPos(self): Point
++def getPosString(self):
++def setPos(self, pos):
++def get_node_src(self): int
++def  get_node_dest(self) :int
++ def __eq__(self, other): int
+}
+
+class Point{
+
++self.x : float
++self.y : float
+
++self.z : float
+
++def getX(self): float
++def setX:
++def getY(self): float
++def setY:
+
++def getZ(self): float
++def setZ:
++def distance(self, p1): float
++ def __eq__(self, other): int
+
+
+}
+
+class Button{
+
++self.x, self.y :float
++ self.font: font
++self.text : Font
++self.size : tuple
++self.surface :
++self.surface.fill(bg)
++self.surface.blit(self.text, (2.5, 0))
++self.rect = pg.Rect(self.x, self.y, self.size[0], self.size[1])
++def show(self, screen) : None
++def click(self, event): bool
+
+}
+
+class Server{
+
+}
+class MainGUI{
+
++ def init_gui(self): None
++ def checkMinMax(graph: nx.DiGraph()):
++ def get_away_from_edge_of_screen(x, y, screen_x_size, screen_y_size): float
++ def normalize_x(screen_x_size, currNodeVal):float:
++ def normalize_y(screen_y_size, currNodeVal) :float
++ def drawArrowForEdge(screen, screen_x_size, screen_y_size, src_node_x, src_node_y, dest_node_x, dest_node_y, colour): None
++ def display_temp_text(self, screen, text: str, pos): float
++def draw_graph_nodes(self, screen, screen_x_size, screen_y_size): None
++def draw_one_edge(self, screen, screen_x_size, screen_y_size, edgeSrcID, edgeDestID, colour): None
++def drawAgents(self, agentLst: list, radius: float):
+
++ def redraw(self, screen, screen_x_size, screen_y_size): sys.maxsize
++ def draw_graph_edges(self, screen, screen_x_size, screen_y_size): None
++ def __init__(self, gr: GraphAlgo): DiGraph
+ +def guiHandle(self, running, pokLst: list, agentLst: list, jsonStr: str, time_to_end):
+
+
+
+
+}
+Button-->MainGUI
+main-->MainGUI
+main-->Agent
+main-->Algorithms
+main-->Pokemon
+main-->DataInput
+main-->Client
+main-->Server
+Server-->main
+Algorithms-->Client
+Algorithms-->Agent
+@enduml
